@@ -92,6 +92,11 @@ void create_cell_types( void )
 	cell_defaults.functions.update_phenotype = NULL; // update_cell_and_death_parameters_O2_based; 
 	cell_defaults.functions.custom_cell_rule = NULL; 
 	cell_defaults.functions.contact_function = NULL; 
+
+    // Randy: define here
+	cell_defaults.functions.update_phenotype = phenotype_function; 
+	cell_defaults.functions.custom_cell_rule = rotation_function; 
+	cell_defaults.functions.contact_function = contact_function; 
 	
 	cell_defaults.functions.add_cell_basement_membrane_interactions = NULL; 
 	cell_defaults.functions.calculate_distance_to_membrane = NULL; 
@@ -126,10 +131,9 @@ void create_cell_types( void )
 	   This is a good place to set custom functions. 
 	*/ 
 	
-	cell_defaults.functions.update_phenotype = phenotype_function; 
-	// cell_defaults.functions.custom_cell_rule = custom_function; 
-	cell_defaults.functions.custom_cell_rule = rotation_function; 
-	cell_defaults.functions.contact_function = contact_function; 
+	// cell_defaults.functions.update_phenotype = phenotype_function; 
+	// cell_defaults.functions.custom_cell_rule = rotation_function; 
+	// cell_defaults.functions.contact_function = contact_function; 
 	
 	/*
 	   This builds the map of cell definitions and summarizes the setup. 
@@ -209,13 +213,15 @@ void phenotype_function( Cell* pCell, Phenotype& phenotype, double dt )
 { return; }
 
 // void custom_function( Cell* pCell, Phenotype& phenotype , double dt )
-// { 
-    // return; 
-// } 
+//{return; }
 void rotation_function(Cell* pCell, Phenotype& phenotype, double dt)
 {
-    std::cout << __FUNCTION__ << ", t= " << PhysiCell_globals.current_time << std::endl;
+    // if (pCell->type_name == "cell2")
+    // {
+    //     std::cout << __FUNCTION__ << ", t= " << PhysiCell_globals.current_time << std::endl;
+    // }
     double angular_speed = 10;
+    angular_speed = 0.01;
     double dtheta = angular_speed * dt;
 
     double x = pCell->position[0];
@@ -231,6 +237,8 @@ void rotation_function(Cell* pCell, Phenotype& phenotype, double dt)
 
     return;
 }
+
+	
 
 void contact_function( Cell* pMe, Phenotype& phenoMe , Cell* pOther, Phenotype& phenoOther , double dt )
 { return; } 
