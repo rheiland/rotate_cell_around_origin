@@ -2,6 +2,8 @@
 
 <img src="mech_sizes_20_25_v2.png" width="700" />
 
+Note the x-positions differ for cell ID 8 (lower center). Why?
+
 ```
 (base) M1P~/git/mech_grid_xml$ python beta/plot_cell_ids.py output_mech_voxel_20 1240 20
 -->
