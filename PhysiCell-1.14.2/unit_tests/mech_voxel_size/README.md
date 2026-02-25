@@ -1,6 +1,6 @@
 ## Visual explanation of why different mechanics voxel sizes lead to different results
 
-<img src="mech_sizes_20_25.png" width="700" />
+<img src="mech_sizes_20_25_v2.png" width="700" />
 
 ```
 (base) M1P~/git/mech_grid_xml$ python beta/plot_cell_ids.py output_mech_voxel_20 1240 20
